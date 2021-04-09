@@ -1,44 +1,22 @@
+import { useState } from 'react';
 import ProductList from '../components/Product/ProductList';
-import ipod from '../assets/ipod.jpg';
-import notebook from '../assets/notebook.jpeg';
-import phone from '../assets/phone.jpg';
-import window from '../assets/window.jpg';
+import ProductForm from '../components/Product/ProductForm';
 
-const products = [
-  {
-    id: 1,
-    name: 'phone',
-    price: 1000,
-    count: 2,
-    img: phone,
-  },
-  {
-    id: 2,
-    name: 'notebook',
-    price: 3000,
-    count: 0,
-    img: notebook,
-  },
-  {
-    id: 3,
-    name: 'ipod',
-    price: 1200,
-    count: 15,
-    img: ipod,
-  },
-  {
-    id: 4,
-    name: 'window',
-    price: 2500,
-    count: 9,
-    img: window,
-  },
-];
+// import notebook from '../assets/notebook.jpeg';
 
-const Products = () => (
-  <div className="products">
-    <ProductList products={products} />
-  </div>
-);
+const Products = () => {
+  const [val, setProducts] = useState([]);
+  const handleAddProduct = newItem => {
+    setProducts(prevState => [...prevState, newItem]);
+  };
+
+  return (
+    <div className="products">
+      <ProductForm onSubmit={handleAddProduct} />
+
+      <ProductList products={val} />
+    </div>
+  );
+};
 
 export default Products;

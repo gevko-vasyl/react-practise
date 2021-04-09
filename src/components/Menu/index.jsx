@@ -1,12 +1,26 @@
-const Menu = () => (
-  <div className="menu">
-    <p>Menu</p>
-    <a href="/products">Products</a>
-    <a href="/products/346">Products Detail</a>
-    <a href="/cart">Cart</a>
-    <a href="/order">Order</a>
-    <a href="/profile">Profile</a>
-  </div>
-);
+import { createUseStyles } from 'react-jss';
+import { routes } from '../routes';
+
+const useStyles = createUseStyles({
+  menu: {
+    display: 'flex',
+    border: '1px solid black',
+    flexDirection: 'column',
+  },
+});
+
+const Menu = () => {
+  const classes = useStyles();
+  return (
+    <div className={classes.menu}>
+      <p>Menu</p>
+      {routes.map(({ link, label }) => (
+        <a key={link} href={link}>
+          {label}
+        </a>
+      ))}
+    </div>
+  );
+};
 
 export default Menu;

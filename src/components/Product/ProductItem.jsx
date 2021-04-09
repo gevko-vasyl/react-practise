@@ -30,6 +30,9 @@ const ProductItem = ({ product }) => {
           <p>name: {product.name}</p>
           <p>price: {product.price}</p>
           <p>count: {product.count}</p>
+          <p>color: {product.color || '--'}</p>
+          <p>Insurance:{product?.insurance?.toString() || '--'}</p>
+          <p>Software: {product?.software?.toString() || '--'}</p>
           <img src={product.img} alt={product.name} />
         </CardActionArea>
       </Card>
