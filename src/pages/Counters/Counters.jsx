@@ -8,11 +8,13 @@ const Counters = () => {
     { id: 2, value: 87 },
   ]);
 
+  //!ComponentDidMount
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('counters'));
-    setCounters(data);
+    data && setCounters(data);
   }, []);
 
+  //!ComponentDidUpdate
   useEffect(() => {
     localStorage.setItem('counters', JSON.stringify(counters));
   }, [counters]);

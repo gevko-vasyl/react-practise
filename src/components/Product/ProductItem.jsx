@@ -1,10 +1,11 @@
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import ShoppingCartTwoToneIcon from '@material-ui/icons/ShoppingCartTwoTone';
+import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import { createUseStyles } from 'react-jss';
 
-import {} from '../utils/loadImage';
+import { loadImage } from '../../utils/loadImage';
 
 const useStyles = createUseStyles({
   item: {
@@ -21,24 +22,31 @@ const useStyles = createUseStyles({
   },
 });
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, onDelete }) => {
   const classes = useStyles();
+  const handleDelete = () => onDelete(product.id);
+
   return (
     <li className={classes.item}>
-      <Card className={classes.card}>
-        <CardActionArea>
+      <CardActionArea>
+        <Card className={classes.card}>
           <p>name: {product.name}</p>
           <p>price: {product.price}</p>
           <p>count: {product.count}</p>
           <p>color: {product.color || '--'}</p>
           <p>Insurance:{product?.insurance?.toString() || '--'}</p>
           <p>Software: {product?.software?.toString() || '--'}</p>
-          <img src={product.img} alt={product.name} />
-        </CardActionArea>
-      </Card>
-      <IconButton>
-        <ShoppingCartTwoToneIcon />
-      </IconButton>
+          <img src={loadImage(product.img)} alt={product.name} />
+        </Card>
+      </CardActionArea>
+      <div className="icons">
+        <IconButton>
+          <ShoppingCartTwoToneIcon />
+        </IconButton>
+        <IconButton onClick={handleDelete}>
+          <DeleteForeverOutlinedIcon />
+        </IconButton>
+      </div>
     </li>
   );
 };

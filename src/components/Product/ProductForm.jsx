@@ -1,8 +1,5 @@
 import { createUseStyles } from 'react-jss';
 import { useState } from 'react';
-import ipod from '../../assets/ipod.jpg';
-import phone from '../../assets/phone.jpg';
-import window from '../../assets/window.jpg';
 
 const useStyles = createUseStyles({
   productFrom: {
@@ -43,7 +40,7 @@ const ProductForm = ({ onSubmit }) => {
     e.preventDefault();
 
     const newItem = {
-      id: Date.now(),
+      // id: Date.now(),
       name,
       price: Number(price),
       count: Number(count),
@@ -141,9 +138,10 @@ const ProductForm = ({ onSubmit }) => {
           name="image"
           onChange={handleChange}
         >
-          <option value={[phone, 123]}>{phone}</option>
+          <option value="phone">phone</option>
 
           <option value="window">window</option>
+          <option value="ipod">ipod</option>
         </select>
       </label>
       <fieldset>
